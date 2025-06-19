@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌍 Air Quality Monitor - Giám sát Chất lượng Không khí</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1><i class="fas fa-wind"></i> Air Quality Monitor</h1>
+            <p>Hệ thống giám sát chất lượng không khí với AI</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- AI Chat Section -->
+            <section class="chat-section">
+                <h2><i class="fas fa-robot"></i> Trợ lý AI Chất lượng Không khí</h2>
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message system">
+                            <i class="fas fa-info-circle"></i>
+                            Xin chào! Tôi có thể giúp bạn:
+                            <ul>
+                                <li>📊 Truy vấn dữ liệu ô nhiễm theo ngày/tháng/năm</li>
+                                <li>🔮 Dự đoán mức độ ô nhiễm</li>
+                                <li>📈 Phân tích thống kê dữ liệu</li>
+                                <li>💾 Thêm dữ liệu mới vào hệ thống</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="chat-input-container">
+                        <input type="text" id="userInput" placeholder="Nhập câu hỏi của bạn... (ví dụ: 'Dữ liệu ô nhiễm ngày 1/5/2004')" />
+                        <button id="sendButton" onclick="sendMessage()">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Prediction Form -->
+            <section class="prediction-section">
+                <h2><i class="fas fa-chart-line"></i> Dự đoán Nhanh</h2>
+                <div class="form-container">
+                    <form id="predictionForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Ngày:</label>
+                                <input type="number" id="day" min="1" max="31" value="15" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tháng:</label>
+                                <input type="number" id="month" min="1" max="12" value="6" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Năm:</label>
+                                <input type="number" id="year" min="2000" max="2030" value="2024" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Giờ:</label>
+                                <input type="number" id="hour" min="0" max="23" value="12" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>PT08.S1 (CO):</label>
+                                <input type="number" step="0.1" id="pt08_s1_co" value="120.5" required>
+                            </div>
+                            <div class="form-group">
+                                <label>C6H6 (Benzene):</label>
+                                <input type="number" step="0.1" id="c6h6_gt" value="5.3" required>
+                            </div>
+                            <div class="form-group">
+                                <label>PT08.S5 (O3):</label>
+                                <input type="number" step="0.1" id="pt08_s5_o3" value="45.2" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>PT08.S2 (NMHC):</label>
+                                <input type="number" step="0.1" id="pt08_s2_nmhc" value="220.7" required>
+                            </div>
+                            <div class="form-group">
+                                <label>PT08.S4 (NO2):</label>
+                                <input type="number" step="0.1" id="pt08_s4_no2" value="34.1" required>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="predict-btn">
+                            <i class="fas fa-magic"></i> Dự đoán Mức độ Ô nhiễm
+                        </button>
+                    </form>
+                    
+                    <div id="predictionResult" class="prediction-result"></div>
+                </div>
+            </section>
+
+            <!-- AQI Information -->
+            <section class="info-section">
+                <h2><i class="fas fa-info"></i> Thông tin AQI</h2>
+                <div class="aqi-levels">
+                    <div class="aqi-level good">
+                        <span class="level">0</span>
+                        <span class="description">Tốt</span>
+                        <span class="advice">Không khí sạch, an toàn cho mọi hoạt động</span>
+                    </div>
+                    <div class="aqi-level moderate">
+                        <span class="level">1</span>
+                        <span class="description">Trung bình</span>
+                        <span class="advice">Chất lượng không khí ổn định</span>
+                    </div>
+                    <div class="aqi-level unhealthy-sensitive">
+                        <span class="level">2</span>
+                        <span class="description">Cao</span>
+                        <span class="advice">Hạn chế ra ngoài, đeo khẩu trang</span>
+                    </div>
+                    <div class="aqi-level unhealthy">
+                        <span class="level">3</span>
+                        <span class="description">Nguy hiểm</span>
+                        <span class="advice">Tránh ra ngoài, bảo vệ sức khỏe</span>
+                    </div>
+                    <div class="aqi-level very-unhealthy">
+                        <span class="level">4</span>
+                        <span class="description">Rất nguy hại</span>
+                        <span class="advice">Ở nhà, thực hiện biện pháp an toàn</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Air Quality Monitor - Phát triển bởi AI & TensorFlow</p>
+            <p><i class="fas fa-github"></i> <a href="https://github.com/ThanhAn-Tran/air-quality-monitor" target="_blank">GitHub Repository</a></p>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Đang xử lý...</p>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html> 
