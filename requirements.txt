@@ -1,0 +1,29 @@
+# Core ML and Data Processing
+tensorflow>=2.16.0
+numpy>=1.21.0
+pandas>=1.3.0
+scikit-learn>=1.0.0
+
+# AI and Language Models
+anthropic>=0.54.0
+
+# Database
+cassandra-driver>=3.29.0
+
+# Web Interface
+gradio>=5.0.0
+fastapi>=0.115.0
+uvicorn>=0.20.0
+
+# Environment and Configuration
+python-dotenv>=1.0.0
+
+# Audio Processing (if needed)
+# pyaudio>=0.2.14
+# pydub>=0.25.1
+
+# Data Visualization
+matplotlib>=3.5.0
+
+# Utilities
+requests>=2.25.0 
