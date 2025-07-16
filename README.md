@@ -161,11 +161,13 @@ python function_calling.py
 Ensure required PyCharm plugins are installed: Docker, dotenv, envfile.
 
 ---
+## 🎥 Demo
 
-## 🧑‍💻 Author
+▶️ Watch the command-line demo here:  
+[AI Chatbot AQI Demo – YouTube](https://youtu.be/WT5ym4amlG4)
 
-**Trần Thành An**
-📧 [antranthanh904@gmail.com](mailto:antranthanh904@gmail.com)
-🔗 [GitHub: ThanhAn-Tran](https://github.com/ThanhAn-Tran)
-
+## 📄 Data Processing Report (Vietnamese)
+This document (in Vietnamese) explains the full data preprocessing and modeling steps used for AQI prediction.
+📘 [View the full Vietnamese report on Google Docs](https://docs.google.com/document/d/1yiMfNJyO6Ej6MsukzcYs_cLtiiPBKhBs/edit?usp=drive_link&ouid=109007509878816083285&rtpof=true&sd=true)
 ---
+
