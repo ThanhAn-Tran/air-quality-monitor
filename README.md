@@ -1,144 +1,171 @@
 # 🌍 Air Quality Index Monitor
 
-Hệ thống giám sát chỉ số chất lượng không khí (AQI) với AI tích hợp sử dụng Claude API, TensorFlow, và Cassandra database.
+A smart system for monitoring air pollution levels (AQI) using AI. Built with **Claude API**, **TensorFlow**, and **Cassandra** for scalable data storage.
 
-## ✨ Tính năng chính
+---
 
-- 📊 **Dự đoán AQI**: Sử dụng machine learning để dự đoán mức độ ô nhiễm
-- 🔍 **Truy vấn dữ liệu**: Tìm kiếm dữ liệu theo ngày/tháng/năm
-- 📈 **Phân tích thống kê**: Thống kê mean, median, max, min của dữ liệu
-- 💬 **AI Chat**: Tương tác bằng tiếng Việt với Claude AI
-- 🌐 **Web Interface**: Giao diện web thân thiện với Gradio
-- 💾 **Lưu trữ dữ liệu**: Cassandra database để lưu trữ dữ liệu lớn
+## ✨ Key Features
 
-## 🚀 Cài đặt nhanh
+* 📊 **AQI Prediction** using machine learning models
+* 🔍 **Data Query** by day, month, and year
+* 📈 **Statistical Analysis**: mean, median, max, min
+* 💬 **AI Chatbot** powered by Claude API, supports Vietnamese
+* 🌐 **User-Friendly Web UI** built with Gradio
+* 💾 **Cassandra Database** for efficient large-scale storage
 
-### 1. Clone repository
+---
+
+## 🚀 Quick Start
+
+### 1. Clone Repository
+
 ```bash
-git clone <your-repo-url>
-cd PythonProject
+git clone https://github.com/ThanhAn-Tran/air-quality-monitor.git
 ```
 
-### 2. Tạo virtual environment
+### 2. Create Virtual Environment
+
 ```bash
 python -m venv venv
-venv\Scripts\activate  # Windows
-# source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate       # Windows
+# source venv/bin/activate  # macOS/Linux
 ```
 
-### 3. Cài đặt dependencies
+### 3. Install Dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Cấu hình API key
-Tạo file `.env` và thêm API key của bạn:
-```bash
+### 4. Configure API Key
+
+Create a `.env` file with your Claude API key:
+
+```env
 ANTHROPIC_API_KEY=your_actual_api_key_here
 ```
 
-### 5. Khởi động Cassandra
+### 5. Start Cassandra via Docker
+
+# Step 1: Pull custom Cassandra image
+```bash
+docker pull antranthanh/my-cassandra
+```
+
+# Step 2: Run the container
 ```bash
 docker run -d --name my-cassandra -p 9042:9042 antranthanh/my-cassandra
 ```
 
-### 6. Chạy ứng dụng
+# Step 3: Check if the container is running
 ```bash
-python web_interface.py  # Web interface
-# hoặc
-python function_calling.py  # Command line
+docker ps
 ```
 
-## 📁 Cấu trúc project
+### 6. Run the App
+
+```bash
+python web_interface.py        # Gradio web app
+# or
+python function_calling.py     # CLI interface
+```
+
+---
+
+## 📁 Project Structure
 
 ```
 PythonProject/
-├── 🧠 function_calling.py      # AI handler chính
-├── 🌐 web_interface.py         # Giao diện web Gradio
-├── 💾 cassandra_CRUD.py        # Database operations
-├── 📊 process_data_training.py # Xử lý và train model
-├── ⚙️ config.py               # Cấu hình hệ thống
-├── 🔧 requirements.txt        # Dependencies
-├── 📋 .env                    # Environment variables
-├── 🤖 model_ML/               # Trained AI models
-└── 📈 Data/                   # Datasets
+├── function_calling.py        # Main AI interaction script
+├── web_interface.py           # Gradio-based UI
+├── cassandra_CRUD.py          # Cassandra DB operations
+├── process_data_training.py   # ML training and preprocessing
+├── config.py                  # Environment config
+├── requirements.txt           # Dependencies list
+├── .env                       # API keys (excluded from Git)
+├── model_ML/                  # Saved models
+└── Data/                      # Raw datasets
 ```
 
-## 🎯 Cách sử dụng
+---
+
+## 🎯 How to Use
 
 ### Web Interface
-1. Chạy `python web_interface.py`
-2. Mở browser tại `http://localhost:7860`
-3. Nhập câu hỏi bằng tiếng Việt
+
+1. Run `python web_interface.py`
+2. Open browser at `http://localhost:7860`
+3. Ask questions in Vietnamese
 
 ### Command Line
+
 ```bash
 python function_calling.py
 ```
 
-### Ví dụ câu hỏi
-- "Cho tôi biết dữ liệu ô nhiễm ngày 1 tháng 5 năm 2004"
-- "Dự đoán mức độ ô nhiễm với các thông số: ngày 15, tháng 6, năm 2024..."
-- "Thống kê trung bình ô nhiễm từ ngày 1 đến 30 tháng 5 năm 2004"
+### Example Questions
 
-## 🛠️ Các công cụ có sẵn
-
-1. **query_pollution_data_openai**: Truy vấn dữ liệu theo ngày/tháng/năm
-2. **predict_pollution_level**: Dự đoán mức độ ô nhiễm
-3. **insert_data_to_database**: Thêm dữ liệu mới vào database
-4. **statistical_analysis**: Phân tích thống kê dữ liệu
-
-## 🔧 Yêu cầu hệ thống
-
-- Python 3.8+
-- Docker (cho Cassandra)
-- RAM: 4GB+ (cho TensorFlow)
-- Disk: 2GB+ free space
-
-## 📊 Mức độ ô nhiễm
-
-- **0**: Thấp (Tốt) 🟢
-- **1**: Trung bình (Ổn định) 🟡
-- **2**: Cao (Kém) 🟠
-- **3**: Nguy hiểm (Rất kém) 🔴
-- **4**: Rất nguy hại (Cực kém) ⚫
-
-## 🔒 Bảo mật
-
-- ✅ API keys được lưu trong file `.env`
-- ✅ File `.env` được gitignore
-- ✅ Không có hardcode API keys trong source code
-
-## 🐛 Troubleshooting
-
-### Lỗi API Key
-```
-ValueError: ANTHROPIC_API_KEY is required
-```
-**Giải pháp**: Kiểm tra file `.env` và đảm bảo API key đúng
-
-### Lỗi Cassandra
-```
-cassandra.cluster.NoHostAvailable
-```
-**Giải pháp**: Đảm bảo Docker container đang chạy:
-```bash
-docker start my-cassandra
-```
-
-### Lỗi TensorFlow
-```
-Could not load model
-```
-**Giải pháp**: Kiểm tra file `model_ML/air_quality_model.h5` tồn tại
-
-## 🤝 Đóng góp
-
-1. Fork project
-2. Tạo feature branch: `git checkout -b feature/new-feature`
-3. Commit changes: `git commit -am 'Add new feature'`
-4. Push branch: `git push origin feature/new-feature`
-5. Tạo Pull Request
+* "Cho tôi biết dữ liệu ô nhiễm ngày 1 tháng 5 năm 2004"
+* "Dự đoán mức độ ô nhiễm với các thông số..."
+* "Thống kê trung bình từ ngày 1 đến 30 tháng 5 năm 2004"
 
 ---
-⭐ Nếu project hữu ích, đừng quên star repo nhé! 
+
+## 🧰 Available Tools
+
+* `query_pollution_data_openai()`: Query by date
+* `predict_pollution_level()`: ML-based AQI prediction
+* `insert_data_to_database()`: Add new records
+* `statistical_analysis()`: Summary stats
+
+---
+
+## ⚙️ System Requirements
+
+* Python 3.8+
+* Docker (for Cassandra)
+* 4GB+ RAM (for ML models)
+* 2GB+ disk space
+
+---
+
+## 📊 Pollution Levels
+
+| Level | Description    | Color     |
+| ----- | -------------- | --------- |
+| 0     | Good           | 🟢 Green  |
+| 1     | Moderate       | 🟡 Yellow |
+| 2     | Unhealthy      | 🟠 Orange |
+| 3     | Very Unhealthy | 🔴 Red    |
+| 4     | Hazardous      | ⚫ Black   |
+
+---
+
+## 🔒 Security
+
+* API key stored securely in `.env` file
+* `.env` is excluded via `.gitignore`
+* No hardcoded secrets in the code
+
+---
+
+## 📦 Deployment Environment
+
+| Tool   | Version           |
+| ------ | ----------------- |
+| OS     | Windows 11        |
+| Docker | v27.3.1           |
+| IDE    | PyCharm 2024.3 CE |
+| Python | 3.8+              |
+
+Ensure required PyCharm plugins are installed: Docker, dotenv, envfile.
+
+---
+
+## 🧑‍💻 Author
+
+**Trần Thành An**
+📧 [antranthanh904@gmail.com](mailto:antranthanh904@gmail.com)
+🔗 [GitHub: ThanhAn-Tran](https://github.com/ThanhAn-Tran)
+
+---
