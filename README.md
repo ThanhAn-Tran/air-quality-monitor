@@ -169,7 +169,9 @@ Ensure required PyCharm plugins are installed: Docker, dotenv, envfile.
 ## 📄 Data Processing Report (Vietnamese)
 
 This document (in Vietnamese) explains the full data preprocessing and modeling steps used for AQI prediction.
-📘 [View the full Vietnamese report on Google Docs](https://docs.google.com/document/d/1yiMfNJyO6Ej6MsukzcYs_cLtiiPBKhBs/edit?usp=drive_link&ouid=109007509878816083285&rtpof=true&sd=true)
+📘 [View the full Vietnamese report on Google Docs](https://drive.google.com/file/d/1omTFpcr2el7ki6TgnbFB4iVZbT88K-b1/view?usp=sharing)
+
+
 
 ---
 
